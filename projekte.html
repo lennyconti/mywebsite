@@ -1,0 +1,450 @@
+<!-- Diese Datei dient als Ziel für den Link 'Projekte' und ist der MASTER-Stil -->
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lenny Conti - Projekte</title>
+    <style>
+        /*
+         * Vereinheitlichte Stile für alle Seiten
+         * Sidebar Breite: 120px (NEU: Sehr schmal)
+         * Mindesthöhe des Inhalts: 550px
+         */
+        body {
+            font-family: Tahoma, Arial, sans-serif;
+            background-color: #FFFFFF;
+            color: #000000;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+        }
+
+        /* Haupt-Wrapper für das gesamte Layout (fixed width, zentriert) */
+        .main-wrapper {
+            width: 800px; 
+            margin: 0 auto; 
+            padding-top: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            /* position: relative; ENTFERNT */
+        }
+
+        /* ------------------------------------- */
+        /* 1. ANIMIERTER LAUFTEXT (MARQUEE) */
+        /* ------------------------------------- */
+        .marquee-container {
+            width: 100%;
+            /* Rot-Orange-Verlauf */
+            background: linear-gradient(to right, #CC0000, #FF6600); 
+            color: #FFFFFF;
+            padding: 2px 0;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #FFCC00;
+        }
+        
+        .marquee-text {
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 14px;
+            white-space: nowrap; 
+        }
+
+        /* ------------------------------------- */
+        /* 2. ZWEI-SPALTEN-LAYOUT (CONTENT) */
+        /* ------------------------------------- */
+        .layout-container {
+            display: flex;
+            width: 100%;
+            padding-bottom: 50px;
+        }
+
+        /* Linke Navigationsleiste (Register) - Konsistente Breite 120px */
+        .sidebar {
+            width: 120px; /* ENFORCED: 120px Breite für Schmalheit */
+            padding: 10px; /* NEU: Gleichmäßiges Padding für den Block-Effekt */
+            background-color: #FFF0CC; /* NEU: Sehr helles Orange für die ganze Seitenleiste */
+            text-align: left;
+            margin-right: 20px;
+        }
+
+        .sidebar h4 {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 14px;
+            color: #CC0000; 
+            margin-top: 5px; /* Etwas weniger Margin Top, da Padding 10px da ist */
+            margin-bottom: 15px; /* NEU: Etwas mehr Abstand zur Register-Liste */
+            border-bottom: 1px solid #FFCC99; /* NEU: Helle, orange Trennlinie */
+            padding-bottom: 5px;
+        }
+
+        /* Styling für die Links (Reiter) */
+        .sidebar a {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 12px;
+            color: #000000; 
+            text-decoration: underline;
+            display: block; 
+            margin-bottom: 10px; /* Etwas enger im Block */
+            font-weight: bold; 
+        }
+
+        .sidebar a:hover {
+            color: #CC0000;
+        }
+        
+        /* NEU: Styling für den aktiven Link */
+        .sidebar a.active-link {
+            color: #3366CC; /* Andere Farbe für aktive Seite */
+            text-decoration: none; /* Keine Unterstreichung für aktive Seite */
+            cursor: default; /* Zeigt, dass es nicht klickbar ist */
+        }
+
+        /* Rechte Haupt-Content-Spalte */
+        .main-content {
+            flex-grow: 1; 
+            padding: 10px 0;
+            min-height: 550px; 
+        }
+        
+        /* ------------------------------------- */
+        /* 3. HAUPTINHALT (PROJEKTE SPEZIFISCH) */
+        /* ------------------------------------- */
+        .page-header { 
+            font-family: Tahoma, Arial, sans-serif; 
+            font-size: 24px; 
+            color: #3366CC; 
+            font-weight: bold; 
+            border-bottom: 2px solid #EEEEEE; 
+            padding-bottom: 10px; 
+            margin-bottom: 15px; 
+        }
+        
+        .content-block { 
+            padding: 10px; 
+            font-family: Tahoma, Arial, sans-serif; 
+            font-size: 13px; 
+            line-height: 1.4; 
+        }
+
+        /* STILE FÜR PROJEKTBLÖCKE */
+        .project-item {
+            display: flex; /* Flexbox für Bild und Text nebeneinander */
+            align-items: flex-start; /* Elemente oben ausrichten */
+            margin-bottom: 30px; /* Abstand zwischen den Projekten */
+            padding-bottom: 15px;
+            border-bottom: 1px dotted #BBBBBB;
+        }
+
+        /* NEU: Bild-Container ist jetzt klickbar und enthält das Bild */
+        .project-image-placeholder {
+            width: 100px;
+            height: 75px;
+            margin-right: 15px;
+            flex-shrink: 0; /* Verhindert das Schrumpfen des Bild-Containers */
+            background-color: #E0E0E0;
+            border: 1px solid #999999;
+            display: block; /* MUSS Block sein, um das Bild zu halten */
+            overflow: hidden;
+            cursor: pointer; /* Wichtig für Klickbarkeit */
+            box-shadow: 1px 1px 3px #AAAAAA;
+        }
+        
+        /* NEU: Das Bild selbst */
+        .project-image-placeholder img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Stellt sicher, dass das Bild den Container ausfüllt */
+            display: block;
+        }
+
+
+        .project-description {
+            flex-grow: 1;
+        }
+
+        .project-description h5 {
+            margin-top: 0;
+            margin-bottom: 5px;
+            color: #CC0000;
+            font-size: 14px;
+        }
+
+        /* YouTube Platzhalter (Stil bleibt, falls er noch benötigt wird) */
+        .youtube-placeholder {
+            width: 100%;
+            max-width: 580px; 
+            height: 350px;
+            margin: 20px 0;
+            background-color: #000000;
+            color: #FFFFFF;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+            font-size: 16px;
+            border: 3px solid #FF6600;
+        }
+        
+        /* ------------------------------------- */
+        /* 4. LIGHTBOX / MODAL STILE (HINZUGEFÜGT VON INDEX.HTML) */
+        /* ------------------------------------- */
+        #lightbox-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8); /* Dunkle, transparente Abdeckung */
+            display: none; /* Standardmäßig versteckt */
+            justify-content: center;
+            align-items: center;
+            z-index: 1000; /* Stellt sicher, dass es über allem liegt */
+        }
+
+        #lightbox-content {
+            background-color: #FFFFFF;
+            padding: 15px;
+            border: 5px solid #3366CC; /* Retro-Rand */
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            max-width: 90%;
+            max-height: 90%;
+            position: relative;
+        }
+        
+        #lightbox-image {
+            display: block;
+            max-width: 100%;
+            max-height: 75vh; /* Max Höhe, damit der Schließen-Button und die Beschriftung sichtbar bleiben */
+            object-fit: contain;
+        }
+
+        #close-button {
+            position: absolute;
+            top: -15px; /* Etwas außerhalb des Haupt-Containers */
+            right: -15px;
+            color: #FFFFFF;
+            background-color: #CC0000;
+            width: 30px;
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            cursor: pointer;
+            border: 2px solid #FFFFFF;
+        }
+        
+        #lightbox-caption {
+            text-align: center;
+            margin-top: 10px;
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            color: #000000;
+        }
+
+
+        .footer { 
+            padding: 10px 0; 
+            font-size: 10px; 
+            color: #555555; 
+            text-align: center; 
+            width: 100%; 
+            border-top: 1px solid #EEEEEE; 
+        }
+    </style>
+</head>
+<body>
+
+    <div class="main-wrapper">
+        <div class="marquee-container">
+            <marquee class="marquee-text" behavior="scroll" direction="left" scrollamount="4">
+                <span id="live-date-time">Lade Datum und Uhrzeit...</span>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                Willkommen auf meiner Homepage! Optimiert für Netscape 4.0 und 1024x768.
+            </marquee>
+        </div>
+
+        <div class="layout-container">
+            <!-- Linke Navigationsleiste (Reiter) - EINGEBETTETES MENÜ -->
+            <div class="sidebar">
+                <h4>REGISTER</h4>
+                <a href="index.html">Startseite</a>
+                <a href="ueber_mich.html">Über Mich</a>
+                <a href="projekte.html" class="active-link">Projekte</a> <!-- KLASSE HIER AKTIVIERT -->
+                <a href="kontakt.html">Kontakt</a>
+            </div>
+            
+            <div class="main-content">
+                <div class="page-header">
+                    Meine aktuellen Projekte
+                </div>
+                <div class="content-block">
+                    <p>
+                        Hier zeige ich, woran ich gerade arbeite und was mich in meiner Freizeit beschäftigt!
+                    </p>
+                    
+                    <!-- PROJEKT 1 -->
+                    <div class="project-item">
+                        <div 
+                            class="project-image-placeholder"
+                            onclick="openLightbox('https://placehold.co/800x600/CC0000/FFFFFF?text=WEBSEITEN-HISTORIE', 'Screenshots aus der ersten Version dieser Webseite (1998)');"
+                            title="Klicken zum Vergrößern"
+                        >
+                            <img src="https://placehold.co/100x75/CC0000/FFFFFF?text=1998" alt="Webseiten-Historie">
+                        </div>
+                        <div class="project-description">
+                            <h5>Projekt 1: Webseiten-Historie</h5>
+                            <p>
+                                Ich baue diese Webseite im Retro-Stil, um zu lernen, wie Homepages um 2003 aussahen. Es ist erstaunlich, wie viel sich in der Webentwicklung verändert hat! Mein Ziel ist es, die Navigation, das Design und die Animationen (wie den Marquee) perfekt nachzubilden.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- PROJEKT 2 -->
+                    <div class="project-item">
+                        <div 
+                            class="project-image-placeholder"
+                            onclick="openLightbox('https://placehold.co/1024x768/00AA00/FFFFFF?text=MEINE+SAMMLUNG', 'Die seltenste Figur in meiner Sammlung.');"
+                            title="Klicken zum Vergrößern"
+                        >
+                            <img src="https://placehold.co/100x75/00AA00/FFFFFF?text=Figur" alt="Meine Sammlung">
+                        </div>
+                        <div class="project-description">
+                            <h5>Projekt 2: Meine Sammlung</h5>
+                            <p>
+                                Ich sammle [Sammlungsgegenstand einfügen], und dies ist mein größter Stolz! Ich habe es auf einem Flohmarkt in [Stadt] gefunden. Ich recherchiere ständig die Geschichte und den Wert meiner Sammlungsstücke.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- PROJEKT 3 -->
+                    <div class="project-item">
+                        <div 
+                            class="project-image-placeholder"
+                            onclick="openLightbox('https://placehold.co/600x400/3366CC/FFFFFF?text=CODING+PROJEKT', 'Ein Screenshot meines letzten Python-Programms.');"
+                            title="Klicken zum Vergrößern"
+                        >
+                            <img src="https://placehold.co/100x75/3366CC/FFFFFF?text=Code" alt="Codierprojekt">
+                        </div>
+                        <div class="project-description">
+                            <h5>Projekt 3: [Titel einfügen]</h5>
+                            <p>
+                                Hier kann ich ein drittes beliebiges Hobby oder Schulprojekt vorstellen, zum Beispiel einen Science-Fiction-Roman, den ich schreibe, oder ein kleines Codierprojekt in Python.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- NEU: PROJEKT 4 (mit externem Link) -->
+                    <div class="project-item">
+                        <div 
+                            class="project-image-placeholder"
+                            onclick="openLightbox('https://placehold.co/900x550/FF6600/000000?text=HOBBY-BLOG', 'Das Titelbild meines Hobby-Blogs.');"
+                            title="Klicken zum Vergrößern"
+                        >
+                            <img src="https://placehold.co/100x75/FF6600/000000?text=Blog" alt="Hobby-Blog">
+                        </div>
+                        <div class="project-description">
+                            <h5>Projekt 4: Mein Hobby-Blog</h5>
+                            <p>
+                                Ich habe einen kleinen Blog über meine Lieblingsthemen erstellt. Dort teile ich Tipps und Tricks zu [Thema] und veröffentliche regelmäßig neue Artikel.
+                            </p>
+                            <p>
+                                <a href="http://www.beispiel-externer-link.de" target="_blank" style="color:#CC0000; text-decoration: underline; font-weight: bold;">► Zum Projekt (Hier klicken!)</a>
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Ende PROJEKT 4 -->
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Lightbox/Modal Overlay HINZUGEFÜGT -->
+    <div id="lightbox-overlay" onclick="closeLightbox();">
+        <div id="lightbox-content" onclick="event.stopPropagation();">
+            <span id="close-button">&times;</span>
+            <img id="lightbox-image" src="" alt="Vergrößertes Bild">
+            <p id="lightbox-caption"></p>
+        </div>
+    </div>
+    <!-- ENDE Lightbox -->
+
+    <div class="footer">
+        <font face="Tahoma, Arial, sans-serif">
+            &copy; 2025 Copyright **Lenny Conti**
+        </font>
+    </div>
+
+    <!-- JavaScript für die Live-Uhrzeit und die Lightbox-Funktionen -->
+    <script>
+        
+        /**
+         * Öffnet die Lightbox und lädt das Bild.
+         * @param {string} imageURL - Die URL des Bildes, das angezeigt werden soll.
+         * @param {string} captionText - Die Bildunterschrift.
+         */
+        function openLightbox(imageURL, captionText) {
+            const overlay = document.getElementById('lightbox-overlay');
+            const image = document.getElementById('lightbox-image');
+            const caption = document.getElementById('lightbox-caption');
+
+            image.src = imageURL;
+            // Der Caption-Text ist optional
+            caption.innerText = captionText || "Bild"; 
+            
+            // Setzt Display auf 'flex' um die Zentrierung zu aktivieren
+            overlay.style.display = 'flex'; 
+        }
+
+        /**
+         * Schließt die Lightbox.
+         */
+        function closeLightbox() {
+            document.getElementById('lightbox-overlay').style.display = 'none';
+        }
+
+
+        // Funktion für die Live-Uhrzeit
+        function updateDateTime() {
+            const now = new Date();
+            const optionsDate = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            const optionsTime = { hour: '2-digit', minute: '2-digit', second: '2-digit' };
+            
+            const dateString = now.toLocaleDateString('de-DE', optionsDate);
+            const timeString = now.toLocaleTimeString('de-DE', optionsTime);
+
+            const dateTimeElement = document.getElementById('live-date-time');
+            if (dateTimeElement) {
+                dateTimeElement.innerHTML = `<strong>Aktuelles Datum: ${dateString} | Uhrzeit: ${timeString} CET</strong>`;
+            }
+        }
+
+        // Aufruf der Funktionen beim Laden der Seite
+        window.onload = function() {
+            // Starte die Uhrzeit und den Intervall erst, wenn das gesamte Dokument geladen ist.
+            updateDateTime();
+            setInterval(updateDateTime, 1000);
+            
+            // Lightbox Schließen-Handler setzen (vom index.html übernommen)
+            const closeBtn = document.getElementById('close-button');
+            if (closeBtn) {
+                closeBtn.onclick = closeLightbox;
+            }
+            // Klick auf das Overlay schließt auch das Fenster
+            const overlay = document.getElementById('lightbox-overlay');
+            if (overlay) {
+                overlay.onclick = closeLightbox;
+            }
+            // Klick auf den Inhalt soll nicht zum Schließen führen
+            const content = document.getElementById('lightbox-content');
+            if (content) {
+                content.onclick = function(event) {
+                    event.stopPropagation();
+                };
+            }
+        };
+    </script>
+</body>
+</html>

@@ -1,0 +1,407 @@
+<!-- Diese Datei dient als Ziel für den Link 'Startseite' und befindet sich in derselben Ordnerstruktur -->
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lenny Conti - Willkommen</title>
+    <!-- 
+      MASTER CSS-STILBLOCK VON 'projekte.html' 
+      Wird 1:1 kopiert, um Konsistenz zu erzwingen. 
+    -->
+    <style>
+        /*
+         * Vereinheitlichte Stile für alle Seiten
+         * Sidebar Breite: 120px (NEU: Sehr schmal)
+         * Mindesthöhe des Inhalts: 550px
+         */
+        body {
+            font-family: Tahoma, Arial, sans-serif;
+            background-color: #FFFFFF;
+            color: #000000;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+        }
+
+        /* Haupt-Wrapper für das gesamte Layout (fixed width, zentriert) */
+        .main-wrapper {
+            width: 800px; 
+            margin: 0 auto; 
+            padding-top: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            /* position: relative; ENTFERNT */
+        }
+
+        /* ------------------------------------- */
+        /* 1. ANIMIERTER LAUFTEXT (MARQUEE) */
+        /* ------------------------------------- */
+        .marquee-container {
+            width: 100%;
+            /* Rot-Orange-Verlauf */
+            background: linear-gradient(to right, #CC0000, #FF6600); 
+            color: #FFFFFF;
+            padding: 2px 0;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #FFCC00;
+        }
+        
+        .marquee-text {
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 14px;
+            white-space: nowrap; 
+        }
+
+        /* ------------------------------------- */
+        /* 2. ZWEI-SPALTEN-LAYOUT (CONTENT) */
+        /* ------------------------------------- */
+        .layout-container {
+            display: flex;
+            width: 100%;
+            padding-bottom: 50px;
+        }
+
+        /* Linke Navigationsleiste (Register) - Konsistente Breite 120px */
+        .sidebar {
+            width: 120px; /* ENFORCED: 120px Breite für Schmalheit */
+            padding: 10px; /* NEU: Gleichmäßiges Padding für den Block-Effekt */
+            background-color: #FFF0CC; /* NEU: Sehr helles Orange für die ganze Seitenleiste */
+            text-align: left;
+            margin-right: 20px;
+        }
+
+        .sidebar h4 {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 14px;
+            color: #CC0000; 
+            margin-top: 5px; /* Etwas weniger Margin Top, da Padding 10px da ist */
+            margin-bottom: 15px; /* NEU: Etwas mehr Abstand zur Register-Liste */
+            border-bottom: 1px solid #FFCC99; /* NEU: Helle, orange Trennlinie */
+            padding-bottom: 5px;
+        }
+
+        /* Styling für die Links (Reiter) */
+        .sidebar a {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 12px;
+            color: #000000; 
+            text-decoration: underline;
+            display: block; 
+            margin-bottom: 10px; /* Etwas enger im Block */
+            font-weight: bold; 
+        }
+
+        .sidebar a:hover {
+            color: #CC0000;
+        }
+        
+        /* NEU: Styling für den aktiven Link */
+        .sidebar a.active-link {
+            color: #3366CC; /* Andere Farbe für aktive Seite */
+            text-decoration: none; /* Keine Unterstreichung für aktive Seite */
+            cursor: default; /* Zeigt, dass es nicht klickbar ist */
+        }
+
+        /* Rechte Haupt-Content-Spalte */
+        .main-content {
+            flex-grow: 1; 
+            padding: 10px 0;
+            min-height: 550px; 
+        }
+
+        /* ------------------------------------- */
+        /* 3. HAUPTINHALT (PROJEKTE SPEZIFISCH) */
+        /* ------------------------------------- */
+        .page-header { 
+            font-family: Tahoma, Arial, sans-serif; 
+            font-size: 24px; 
+            color: #3366CC; 
+            font-weight: bold; 
+            border-bottom: 2px solid #EEEEEE; 
+            padding-bottom: 10px; 
+            margin-bottom: 15px; 
+        }
+        
+        .content-block { 
+            padding: 10px; 
+            font-family: Tahoma, Arial, sans-serif; 
+            font-size: 13px; 
+            line-height: 1.4; 
+        }
+        
+        /* Zusätzliche Stile für die Startseite */
+        .welcome-text {
+            font-size: 14px;
+            font-weight: bold;
+            color: #CC0000;
+            margin-bottom: 15px;
+        }
+        
+        /* NEUER STIL: Galerie-Container für zentrierte Platzhalter */
+        .image-gallery-placeholder {
+            display: flex;
+            justify-content: center; /* Zentriert die Bilder horizontal */
+            gap: 15px; /* Abstand zwischen den Bildern */
+            margin: 25px 0; /* Abstand zum Text oben und unten */
+            width: 100%;
+        }
+        
+        .gallery-item {
+            width: 100px;
+            height: 100px;
+            flex-shrink: 0; /* Verhindert das Schrumpfen */
+            background-color: #E6F0FF; /* Sehr helles Blau als Placeholder-Hintergrund */
+            border: 1px solid #3366CC;
+            display: block; /* Muss Block sein, um das Bild zu halten */
+            overflow: hidden;
+            cursor: pointer; /* Zeigt, dass es klickbar ist */
+            box-shadow: 1px 1px 3px #AAAAAA;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* ------------------------------------- */
+        /* 4. LIGHTBOX / MODAL STILE (NEU) */
+        /* ------------------------------------- */
+        #lightbox-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8); /* Dunkle, transparente Abdeckung */
+            display: none; /* Standardmäßig versteckt */
+            justify-content: center;
+            align-items: center;
+            z-index: 1000; /* Stellt sicher, dass es über allem liegt */
+        }
+
+        #lightbox-content {
+            background-color: #FFFFFF;
+            padding: 15px;
+            border: 5px solid #3366CC; /* Retro-Rand */
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            max-width: 90%;
+            max-height: 90%;
+            position: relative;
+        }
+        
+        #lightbox-image {
+            display: block;
+            max-width: 100%;
+            max-height: 75vh; /* Max Höhe, damit der Schließen-Button und die Beschriftung sichtbar bleiben */
+            object-fit: contain;
+        }
+
+        #close-button {
+            position: absolute;
+            top: -15px; /* Etwas außerhalb des Haupt-Containers */
+            right: -15px;
+            color: #FFFFFF;
+            background-color: #CC0000;
+            width: 30px;
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            cursor: pointer;
+            border: 2px solid #FFFFFF;
+        }
+        
+        #lightbox-caption {
+            text-align: center;
+            margin-top: 10px;
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            color: #000000;
+        }
+
+
+        .footer { 
+            padding: 10px 0; 
+            font-size: 10px; 
+            color: #555555; 
+            text-align: center; 
+            width: 100%; 
+            border-top: 1px solid #EEEEEE; 
+        }
+    </style>
+</head>
+<body>
+
+    <div class="main-wrapper">
+        <div class="marquee-container">
+            <marquee class="marquee-text" behavior="scroll" direction="left" scrollamount="4">
+                <span id="live-date-time">Lade Datum und Uhrzeit...</span>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                Willkommen auf meiner Homepage! Hier finden Sie Verschiedenes über mich.
+            </marquee>
+        </div>
+
+        <div class="layout-container">
+            
+            <!-- Linke Navigationsleiste (Reiter) - EINGEBETTETES MENÜ -->
+            <div class="sidebar">
+                <h4>REGISTER</h4>
+                <a href="index.html" class="active-link">Startseite</a> <!-- KLASSE HIER AKTIVIERT -->
+                <a href="ueber_mich.html">Über Mich</a>
+                <a href="projekte.html">Projekte</a>
+                <a href="kontakt.html">Kontakt</a>
+            </div>
+            
+            <!-- Rechte Haupt-Content-Spalte -->
+            <div class="main-content">
+                <div class="page-header">
+                    Willkommen auf meiner Homepage!
+                </div>
+                
+                <div class="content-block">
+                    <p class="welcome-text">
+                        Grüezi und schön, dass Sie hier sind!
+                    </p>
+                    
+                    <p>
+                        Guten Tag, mein Name ist Lenny Conti und ich bin 15 Jahre alt. Ich besuche zurzeit das 10. Schuljahr und beginne im Jahr 2026 meine Ausbildung als ICT-Fachmann beim Obergericht des Kanton Zürichs. Auf meiner Homepage stelle ich mich vor und teile meine neusten Projekte. Ich habe die Website im Rahmen eines Auftrages von der BWS Schule erstellt. Sie dient ebenfalls als Portfolio.
+                    </p>
+                    <p>
+                        Links im Register können Sie zwischen den verschiedenen Seiten meiner Website wechseln. Bei irgendwelchen Fehler, bitte zögern Sie nicht sich bei mir zu melden.
+                    </p>
+                    
+                    <!-- DREI ZENTRIERTE BILD-PLATZHALTER MIT KLICK-FUNKTION -->
+                    <div class="image-gallery-placeholder">
+                        
+                        <!-- Bild Platzhalter 1 - KLICKBAR -->
+                        <!-- 
+                            HINWEIS: Ersetzen Sie die 'src' des <img> Tags durch Ihren tatsächlichen Bild-Link. 
+                            openLightbox(Bild-URL, Bildunterschrift);
+                        -->
+                        <div 
+                            class="gallery-item" 
+                            onclick="openLightbox('https://github.com/lennyconti/mywebsite/blob/main/20251103_172347.jpg?raw=true', 'Aussicht auf den Zürichsee von Höhe Schönenberg');"
+                            title="Klicken zum Vergrößern"
+                        >
+                            <img src="https://github.com/lennyconti/mywebsite/blob/main/20251103_172347.jpg?raw=true" alt="Zürichsee">
+                        </div>
+                        
+                        <!-- Bild Platzhalter 2 - KLICKBAR -->
+                        <div 
+                            class="gallery-item"
+                            onclick="openLightbox('https://github.com/lennyconti/mywebsite/blob/main/20251104_065733.jpg?raw=true', 'Mein Hund Robbi');"
+                            title="Klicken zum Vergrößern"
+                        >
+                            <img src="https://github.com/lennyconti/mywebsite/blob/main/20251104_065733.jpg?raw=true" alt="Mein Hund Robbi">
+                        </div>
+                        
+                        <!-- Bild Platzhalter 3 - KLICKBAR -->
+                        <div 
+                            class="gallery-item"
+                            onclick="openLightbox('https://github.com/lennyconti/mywebsite/blob/main/20251112_183334.jpg?raw=true', 'Richti at Night');"
+                            title="Klicken zum Vergrößern"
+                        >
+                            <img src="https://github.com/lennyconti/mywebsite/blob/main/20251112_183334.jpg?raw=true" alt="Richti at Night">
+                        </div>
+                    </div>
+                    <!-- ENDE: BILD-PLATZHALTER -->
+
+                    <p>
+                        <font color="#3366CC">
+                            Viel Spaß beim Entdecken!
+                        </font>
+                    </p>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Lightbox/Modal Overlay HINZUGEFÜGT -->
+    <div id="lightbox-overlay" onclick="closeLightbox();">
+        <div id="lightbox-content" onclick="event.stopPropagation();">
+            <span id="close-button">&times;</span>
+            <img id="lightbox-image" src="" alt="Vergrößertes Bild">
+            <p id="lightbox-caption"></p>
+        </div>
+    </div>
+    <!-- ENDE Lightbox -->
+
+    <!-- Copyright-Footer -->
+    <div class="footer">
+        <font face="Tahoma, Arial, sans-serif">
+            &copy; 2025 Copyright, Lenny Matteo Conti
+        </font>
+    </div>
+
+    <!-- JavaScript für die Live-Uhrzeit und die Lightbox -->
+    <script>
+        
+        /**
+         * Öffnet die Lightbox und lädt das Bild.
+         * @param {string} imageURL - Die URL des Bildes, das angezeigt werden soll.
+         * @param {string} captionText - Die Bildunterschrift.
+         */
+        function openLightbox(imageURL, captionText) {
+            const overlay = document.getElementById('lightbox-overlay');
+            const image = document.getElementById('lightbox-image');
+            const caption = document.getElementById('lightbox-caption');
+
+            image.src = imageURL;
+            // Der Caption-Text ist optional
+            caption.innerText = captionText || "Bild"; 
+            
+            // Setzt Display auf 'flex' um die Zentrierung zu aktivieren
+            overlay.style.display = 'flex'; 
+        }
+
+        /**
+         * Schließt die Lightbox.
+         */
+        function closeLightbox() {
+            document.getElementById('lightbox-overlay').style.display = 'none';
+        }
+
+
+        // Funktion für die Live-Uhrzeit
+        function updateDateTime() {
+            const now = new Date();
+            const optionsDate = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            const optionsTime = { hour: '2-digit', minute: '2-digit', second: '2-digit' };
+            
+            const dateString = now.toLocaleDateString('de-DE', optionsDate);
+            const timeString = now.toLocaleTimeString('de-DE', optionsTime);
+
+            const dateTimeElement = document.getElementById('live-date-time');
+            if (dateTimeElement) {
+                dateTimeElement.innerHTML = `<strong>Aktuelles Datum: ${dateString} | Uhrzeit: ${timeString} CET</strong>`;
+            }
+        }
+
+        // Aufruf der Funktionen beim Laden der Seite
+        window.onload = function() {
+            // Starte die Uhrzeit und den Intervall erst, wenn das gesamte Dokument geladen ist.
+            updateDateTime();
+            setInterval(updateDateTime, 1000);
+
+            // Lightbox Schließen-Handler setzen
+            const closeBtn = document.getElementById('close-button');
+            if (closeBtn) {
+                closeBtn.onclick = closeLightbox;
+            }
+            // Klick auf das Overlay schließt auch das Fenster
+            document.getElementById('lightbox-overlay').onclick = closeLightbox;
+            // Klick auf den Inhalt soll nicht zum Schließen führen
+            document.getElementById('lightbox-content').onclick = function(event) {
+                event.stopPropagation();
+            };
+        };
+    </script>
+
+</body>
+</html>
